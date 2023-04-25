@@ -1,0 +1,98 @@
+
+Write a program to demonstrate bitwise operation.
+
+# Python program to show
+# bitwise operators
+ 
+a = 10
+b = 4
+ 
+# Print bitwise AND operation
+print("a & b =", a & b)
+ 
+# Print bitwise OR operation
+print("a | b =", a | b)
+ 
+# Print bitwise NOT operation
+print("~a =", ~a)
+ 
+# print bitwise XOR operation
+print("a ^ b =", a ^ b)
+
+
+Practical No.2
+Aim:- Implement Page Rank Algorithm.
+
+import numpy as np
+from scipy.sparse import sc_matrix
+from fractions import Fraction
+
+# keep it clean and tidy
+def float_format (vector, decimal):
+    return np.round ( (vector) .astype (np.float), decimals=decimal)
+
+G = np.matrix ([[1, 1, 0],
+                    [1,0,1],
+                    [0,1,0]])
+
+n=len (G)
+#print (n)
+# transform G into markov matrix A
+M = csc_matrix (G, dtype=p.float)
+rsums = np.array (M.sum (1)) [:,0]
+ri, ci = M. nonzero ()
+M. data /= rsums [ri]
+# Www matrix
+# we have 3 webpages and probability of landing to each one is 1/3
+#(default Probability)
+
+
+
+dp = Fraction (1, n)
+E = np.zeros ( (3, 3) )
+E[:] =dp
+# taxation
+beta = 0.85
+# Www matrix
+A = beta * M + ( (1-beta) * E)
+#initial vector
+r = np.matrix ( [dp, dp, dp])
+r = np.transpose(r)
+
+previous_r = r
+for it in range (1,30) :
+    r= A *r 
+    #check if converged
+    if (previous_r==r).all():
+        break
+previous_r=r
+
+print("final :",float_format(r,3))
+print("sum",np.sum(r))
+
+
+
+
+Practical No.3
+
+Aim:- Implement Dynamic programming algorithm for computing the edit distance between
+
+
+import numpy as np
+def levenshtein (s1, s2) :
+    size_x=len (s1) +1 
+    size_y=len ( s2) +1 
+    matrix=np.zeros((size_x, size_y))
+    for x in range (size_x):
+        matrix [x, 0]=x
+    for y in range (size_y) :
+        matrix [0,y]=y
+    for x in range (1,size_x) :
+        for y in range (1,size_y):
+            if s1 [x-1] == s2 [y-1]: matrix [x,y]=min (matrix [x-1,y]+ 1)
+            else:
+                matrix [x,y]=min(matrix [x-1,y]+ 1)
+    print (matrix)
+    return (matrix [size_x-1,size_y-1])
+levenshtein ("Hello", "hallo")
+
